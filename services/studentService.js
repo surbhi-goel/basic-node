@@ -2,7 +2,16 @@ const registerModel = require('../models/register');
 
 const getStudentData = async function(reqBody) {
     console.log("getStudentData ", reqBody);
-    return await registerModel.find();
+    return await registerModel.aggregate([
+        {
+            $lookup : {
+                from : "logindetails",
+                localField : "_id",
+                foreignField : "user_id",
+                as : "creds"
+            }
+        }
+    ]);
 }
 
 const getStudentDataByRollNo = async function(reqParams) {

@@ -25,7 +25,7 @@ const swaggerDefinition = {
       description: 'A sample API', 
     },
     // host: "localhost:3000",
-    host: config.server.swaggerHostname,
+    host: config.config.server.swaggerHostname,
     basePath: '/', 
   };
   
