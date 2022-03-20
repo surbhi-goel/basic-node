@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const uniqueValidator = require('mongoose-unique-validator');
 const Schema = mongoose.Schema;
 
 const loginDetails = new Schema({
@@ -9,13 +10,18 @@ const loginDetails = new Schema({
     }, 
     emailId: {
         type: String,
+        unique: true
     },
     password: {
-        type: String,
+        type: String
     },
 },
 {
     timestamps: true,
+});
+
+loginDetails.plugin(uniqueValidator, {
+    message: 'already exists.',
 });
 
 
