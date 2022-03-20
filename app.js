@@ -7,8 +7,11 @@ const port = 3000;
 const routes = require('./routes/router');
 const swaggerUi = require('swagger-ui-express');
 const swaggerJSDoc = require('swagger-jsdoc');
-const config = require('./config/connect');
+const configdb = require('./config/connect');
 const bodyParser = require('body-parser');// parse req code
+const dotenv = require('dotenv');
+const config = require('./config/config');
+dotenv.config();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
@@ -21,7 +24,8 @@ const swaggerDefinition = {
       version: '1.0.0',
       description: 'A sample API', 
     },
-    host: "localhost:3000",
+    // host: "localhost:3000",
+    host: config.server.swaggerHostname,
     basePath: '/', 
   };
   
