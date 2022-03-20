@@ -16,7 +16,22 @@ const getStudentData = async function(reqBody) {
 
 const getStudentDataByRollNo = async function(reqParams) {
     console.log("getStudentDataByID ", reqParams);
-    return await registerModel.find(reqParams);
+    const rollno = parseInt(reqParams.rollno);
+    return await registerModel.aggregate([
+        {
+            $match : {
+                rollno: rollno
+            }
+        },
+        {
+            $lookup : {
+                from : "logindetails",
+                localField : "_id",
+                foreignField : "user_id",
+                as : "creds"
+            }
+        }
+    ]);
 }
 
 const deleteStudentByRollNo = async function(reqParams) {
