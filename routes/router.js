@@ -9,5 +9,6 @@ router.get('/get-student-data/', studentController.getStudentData);
 router.get('/get-student-data/:rollno', studentController.getStudentDataByRollNo);
 router.get('/get-student-specific-data/:rollno', studentController.getStudentSpecificDataByRollNo);
 router.delete('/delete-student/:rollno', studentController.deleteStudentByRollNo);
+router.patch('/update-student/:rollno', studentController.UpdateStudentByRollNo);
 
 module.exports = router;

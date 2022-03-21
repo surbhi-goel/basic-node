@@ -71,7 +71,21 @@ const deleteStudentByRollNo = async function(reqParams) {
     return await registerModel.deleteMany(reqParams);
 }
 
+const UpdateStudentByRollNo = async function(reqParams, reqBody) {
+    const rollno = parseInt(reqParams.rollno);
+    await registerModel.updateOne(
+        {
+            'rollno': rollno
+        }, {
+           $set : reqBody 
+        }
+    );
+    return await getStudentSpecificDataByRollNo(reqParams);
+
+}
+
 module.exports.getStudentData = getStudentData;
 module.exports.getStudentDataByRollNo = getStudentDataByRollNo;
 module.exports.getStudentSpecificDataByRollNo = getStudentSpecificDataByRollNo;
 module.exports.deleteStudentByRollNo = deleteStudentByRollNo;
+module.exports.UpdateStudentByRollNo = UpdateStudentByRollNo;

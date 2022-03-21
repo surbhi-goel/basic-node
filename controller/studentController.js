@@ -40,7 +40,18 @@ const deleteStudentByRollNo = async function(req, res) {
     }
 }
 
+const UpdateStudentByRollNo = async function(req, res) {
+    try{
+        const result = await studentService.UpdateStudentByRollNo(req.params, req.body);
+        return res.status(200).json({ "status": 200, "data": result });
+    }
+    catch (e){
+        console.log(e);
+    }
+}
+
 module.exports.getStudentData = getStudentData;
 module.exports.getStudentDataByRollNo = getStudentDataByRollNo;
 module.exports.getStudentSpecificDataByRollNo = getStudentSpecificDataByRollNo;
 module.exports.deleteStudentByRollNo = deleteStudentByRollNo;
+module.exports.UpdateStudentByRollNo = UpdateStudentByRollNo;
