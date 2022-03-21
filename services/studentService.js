@@ -81,7 +81,22 @@ const UpdateStudentByRollNo = async function(reqParams, reqBody) {
         }
     );
     return await getStudentSpecificDataByRollNo(reqParams);
+}
 
+const ReplaceStudentByRollNo = async function(reqParams, reqBody) {
+    const rollno = parseInt(reqParams.rollno);
+    await registerModel.replaceOne(
+        {
+            'rollno': rollno
+        },{
+            ...reqBody,
+            'rollno': rollno
+        },
+        {
+            upsert : true // sets to true - if no match found, create one
+        }
+    );
+    return await getStudentSpecificDataByRollNo(reqParams);
 }
 
 module.exports.getStudentData = getStudentData;
@@ -89,3 +104,4 @@ module.exports.getStudentDataByRollNo = getStudentDataByRollNo;
 module.exports.getStudentSpecificDataByRollNo = getStudentSpecificDataByRollNo;
 module.exports.deleteStudentByRollNo = deleteStudentByRollNo;
 module.exports.UpdateStudentByRollNo = UpdateStudentByRollNo;
+module.exports.ReplaceStudentByRollNo = ReplaceStudentByRollNo;

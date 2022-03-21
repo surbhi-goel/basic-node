@@ -11,4 +11,7 @@ router.get('/get-student-specific-data/:rollno', studentController.getStudentSpe
 router.delete('/delete-student/:rollno', studentController.deleteStudentByRollNo);
 router.patch('/update-student/:rollno', studentController.UpdateStudentByRollNo);
 
+// if not found, create another one
+router.put('/replace-student/:rollno', studentController.ReplaceStudentByRollNo);
+
 module.exports = router;
