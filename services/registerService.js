@@ -29,4 +29,9 @@ const register = async function(reqBody) {
     await userModel.create(loginData);
 }
 
+const multiRegister = async function(reqBody) {
+   return await registerModel.insertMany(reqBody);
+}
+
 module.exports.register = register;
+module.exports.multiRegister = multiRegister;
